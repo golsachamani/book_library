@@ -1,0 +1,18 @@
+{%extends '_base.html'%}
+{% block title%}book list{%endblock%}
+
+{% block content%}
+<ul class="books">
+    {% for book in books %}
+      <li>
+        <h3>{{ book.name }}</h3>
+        <p>Author: {{ book.author }}</p>
+        <p>Category: {{ book.category }}</p>
+        <p>Published: {{ book.published_at }}</p>
+        <img src="{{ book.image_url }}" alt="{{ book.name }} Image">>
+        <p>---------</p>
+      </li>
+    {% endfor %}
+  </ul>
+  
+{%endblock content%}
