@@ -1,0 +1,40 @@
+{% extends '_base.html'%}
+{% block title%}book detail{%endblock %}
+
+{%block content%}
+<h3>Book Detail</h3>
+    <h5> book name:{{book.name}}</h5>
+    <h5>book author:{{book.author}}</h5>
+    <!-- <p>{{book.description|linebreaks}}</p> -->
+    <h3>Book Comment</h3>
+    {%for comment in comments%}
+    
+    <p>{{comment.text}}</p>
+    
+   <h5>{{comment.member}}</h5> 
+{%endfor%}   
+   
+  
+   
+   <h3>Book Instances</h3>
+   <p>Book Instance Count: {{ book_instance_count }}</p>
+   <ul>
+       {% for instance in book_instance_status %}
+           <li> Status: {{ instance.status }}</li>
+           <!-- {%if instance.status.is_available%} -->
+                <a href="{% url 'lend_book'%}">Status: {{ instance.status }}</a>
+         
+           <!-- {%endif%} -->
+       {% endfor %}
+   </ul>
+ 
+
+<form method="POST">
+    {% csrf_token%}
+    {{comment_form.as_p}}
+    <button type="submit" class="btn btn-primary mt-3" >ارسال</button>
+
+    
+
+{% endblock content%}
+

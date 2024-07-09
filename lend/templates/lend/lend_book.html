@@ -1,0 +1,12 @@
+{% extends '_base.html'%}
+
+{% block title%}lending book{%endblock%}
+
+{%block content%}
+<form method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+
+</form>
+
+{%endblock content%}

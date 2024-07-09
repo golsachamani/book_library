@@ -5,7 +5,7 @@
 <ul class="books">
     {% for book in books %}
       <li>
-        <h3>{{ book.name }}</h3>
+        <a href="{%url 'book_detail' book.id%}"><h3>{{ book.name }}</h3></a>
         <p>Author: {{ book.author }}</p>
         <p>Category: {{ book.category }}</p>
         <p>Published: {{ book.published_at }}</p>
