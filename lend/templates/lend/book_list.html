@@ -5,11 +5,14 @@
 <ul class="books">
     {% for book in books %}
       <li>
-        <a href="{%url 'book_detail' book.id%}"><h3>{{ book.name }}</h3></a>
+        <a href="{% url 'book_detail' book.id%}">{{book.name}}</a>
         <p>Author: {{ book.author }}</p>
         <p>Category: {{ book.category }}</p>
         <p>Published: {{ book.published_at }}</p>
-        <img src="{{ book.image_url }}" alt="{{ book.name }} Image">>
+        
+        {% if book.image %}
+        <img src="{{ book.image.url }}" alt="{{ book.name }}">
+    {% endif %}
         <p>---------</p>
       </li>
     {% endfor %}

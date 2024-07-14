@@ -5,6 +5,7 @@
 <h3>Book Detail</h3>
     <h5> book name:{{book.name}}</h5>
     <h5>book author:{{book.author}}</h5>
+   
     <!-- <p>{{book.description|linebreaks}}</p> -->
     <h3>Book Comment</h3>
     {%for comment in comments%}
@@ -21,7 +22,7 @@
    <ul>
        {% for instance in book_instance_status %}
            <li> Status: {{ instance.status }}</li>
-           <!-- {%if instance.status.is_available%} -->
+           {%if instance.status == 'a'%}
                 <a href="{% url 'lend_book'%}">Status: {{ instance.status }}</a>
          
            <!-- {%endif%} -->

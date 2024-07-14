@@ -10,4 +10,4 @@ class CommentForm(forms.ModelForm):
 class MemberForm(forms.ModelForm):
     class Meta:
         model=Member
-        fields = ['first_name', 'last_name', 'mobile_number']
+        fields = ['first_name', 'last_name', 'mobile_number','age', 'address']

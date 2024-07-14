@@ -45,5 +45,6 @@ class LendBookView(generic.CreateView):
     def for_valid(self, form):
         if form.is_valid():
             form = form.save(commit=False)
+           
             form.save()
         return redirect('book_detail')

@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import render, reverse
 from django.db import models
 
+
 class Book(models.Model):
     CATEGORY_CHOICE= (
         ('cat1','cat1'), ('cat3','cat3'), ('cat2','cat2'),
@@ -18,7 +19,7 @@ class Book(models.Model):
     def __str__(self):
          return self.name
     def get_absolute_url(self):
-         return reverse('book_detail', args=[self.name])
+        return reverse('book_detail', args=[self.name])
 
 
 class BookInstace(models.Model):
@@ -42,8 +43,8 @@ class BookInstace(models.Model):
 class Member(models.Model):
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=50)
-    age = models.PositiveIntegerField()
-    address = models.TextField()
+    age = models.PositiveIntegerField(null=True,blank=True)
+    address = models.TextField(null=True,blank=True)
     mobile_number = models.PositiveIntegerField()
     join_at = models.DateTimeField(auto_now_add=True)
 

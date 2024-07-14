@@ -1,7 +1,25 @@
 {% extends '_base.html'%}
-
-{%block title%}Home Page{% endblock title%}
+{%block title%}home page{%endblock%}
 
 {%block content%}
-<h1>this is my library</h1>
-{% endblock%}
+
+    <h1>Book Library</h1>
+    {% for category, books in categories.items %}
+        <h2>{{ category }}</h2>
+        <ul>
+            {% for book in books %}
+                <li>
+                    <h3>{{ book.name }}</h3>
+                    <p>Author: {{ book.author }}</p>
+                    <p>{{ book.description }}</p>
+                    <p>Published at: {{ book.published_at }}</p>
+                    <p>Pages: {{ book.pages }}</p>
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.name }}">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+{%endblock%}
