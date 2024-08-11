@@ -1,19 +1,21 @@
-{% extends '_base.html'%}
-{%include 'index.html'%}
-{%block title%}book_detail{%endblock%}
-{%block content%}
-<div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+{% extends '_base.html' %}
+{% include 'index.html' %}
+{% block title %}
+  book_detail
+{% endblock %}
+{% block content %}
+  <div class="card" style="width: 18rem;">
+    <img src="{{ book.image }}" alt="{{ book.title }}" width="300" height="400" />
     <div class="card-body">
-      <h5 class="card-title">{{books.title}}</h5>
-      <p class="card-text">{{books.author}}</p>
-      <p class="card-text">{{books.pages}}</p>
+      <h5 class="card-title">{{ book.title }}</h5>
+      <h6 class="cart-subtitle">by: <a href="{% url 'author_detail' book.author.id %}">{{ book.author.fullname }}</a></h6>
+      <p class="card-text">page:{{ book.pages }}</p>
+
       <ul>
-        {%for genre in books.genre.all%}
-         <li>{{genre.name}}</li>   
-        {%endfor%}
+        {% for genre in book.genre.all %}
+          <a href="{{book.genre.get_absolute_url}}">{{ genre.name }}</a>
+        {% endfor %}
       </ul>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
     </div>
   </div>
-{%endblock%}
+{% endblock %}

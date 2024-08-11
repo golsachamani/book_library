@@ -1,0 +1,21 @@
+ {% extends "_base.html" %}
+    <title>{{ genre.name }} - Genre Details</title>
+{%block content%}
+<body>
+    <h1>{{ genre.name }}</h1>
+
+    <h2>Books in {{ genre.name }} Genre</h2>
+    <ul>
+        {% for book in genre.genres.all %}
+            <li>
+                <a href="{% url 'book_detail' book.id %}">{{ book.title }}</a>
+            </li>
+        {% empty %}
+            <li>No books found in this genre.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}
+</body>
+</html>
