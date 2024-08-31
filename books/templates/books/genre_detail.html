@@ -1,7 +1,7 @@
  {% extends "_base.html" %}
     <title>{{ genre.name }} - Genre Details</title>
 {%block content%}
-<body>
+
     <h1>{{ genre.name }}</h1>
 
     <h2>Books in {{ genre.name }} Genre</h2>
@@ -17,5 +17,5 @@
 
     <a href="{% url 'home' %}">Back to Home</a>
 {% endblock %}
-</body>
+
 </html>

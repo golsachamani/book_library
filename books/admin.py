@@ -1,15 +1,23 @@
 from django.contrib import admin
-
-from . models import Genre, Book, Author
-admin.site.register(Author)
-admin.site.register(Genre)
-@admin.display(description='genre')
+from . import models
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ("id", "name")
 
 
-@admin.register(Book)
+class AuthorAdmin(admin.ModelAdmin):
+    list_display = ("id", "fullname")
+
+
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'published_at','get_genres' ]
+    list_display = ("id", "title", "author", "get_genres", "pages")
 
-    def get_genres(self, obj,):
-            return [genre.name for genre in obj.genre.all()]
-    get_genres.short_description ='genres'
+class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ("id", "instance_of", "status", "borrower")
+
+
+admin.site.register(models.Genre, GenreAdmin)
+admin.site.register(models.Author, AuthorAdmin)
+admin.site.register(models.Book, BookAdmin)
+admin.site.register(models.BookInstance, BookInstanceAdmin)
+    
+    

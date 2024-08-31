@@ -1,21 +1,32 @@
-{% extends '_base.html' %}
-{% include 'index.html' %}
-{% block title %}
-  book_detail
-{% endblock %}
-{% block content %}
-  <div class="card" style="width: 18rem;">
-    <img src="{{ book.image }}" alt="{{ book.title }}" width="300" height="400" />
-    <div class="card-body">
-      <h5 class="card-title">{{ book.title }}</h5>
-      <h6 class="cart-subtitle">by: <a href="{% url 'author_detail' book.author.id %}">{{ book.author.fullname }}</a></h6>
-      <p class="card-text">page:{{ book.pages }}</p>
+{% extends 'base.html' %}
 
-      <ul>
-        {% for genre in book.genre.all %}
-          <a href="{{book.genre.get_absolute_url}}">{{ genre.name }}</a>
-        {% endfor %}
-      </ul>
+{% block content %}
+  <div class="row">
+    <div class="d-flex justify-content-center">
+      <div class="col-4 m-5">
+        <div class="card" style="width: 100%;">
+          <img src="{{ book.img }}" class="card-img-top" alt="{{ book.title }} image" />
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <h6 class="card-subtitle">by <a href="{{ book.author.get_absolute_url }}">{{ book.author.fullname }}</a></h6>
+            <p class="card-text">{{ book.short_desc }}</p>
+            <a href="{{ book.get_borrow_url }}"
+              class="btn {% if book.available_instances|length < 1 %}
+                 btn-warning disabled
+              {% else %}
+                 btn-primary
+              {% endif %}">
+              Borrow
+            </a>
+          </div>
+          <div class="card-footer text-muted">
+            Genre:{% for genre in book.genre.all %}
+              <a href="{{ genre.get_absolute_url }}" class="me-1">{{ genre }}</a>
+            {% endfor %}Instances: {{ book.instances.count }} ({{ book.available_instances|length }})
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
+
